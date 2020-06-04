@@ -58,19 +58,22 @@ export default {
       let _this = this
       this.$refs.form.validate(valid => {
         if (valid === true) {
-          this.$http.post('login', this.form).then(
+          this.axios.post('login', this.form).then(
             res => {
               if (res.data.meta.status === 200) {
                 _this.$message({
                   message: '登陆成功',
-                  type: 'success'
+                  type: 'success',
+                  duration: 2000
                 })
+                console.log(res.data.data.token)
                 window.sessionStorage.setItem('token', res.data.data.token)
-                _this.$router.push('/home')
+                _this.$router.push({ name: 'home' })
               } else {
                 _this.$message({
                   message: res.data.meta.msg,
-                  type: 'error'
+                  type: 'error',
+                  duration: 2000
                 })
               }
             },
@@ -81,7 +84,8 @@ export default {
         } else {
           this.$message({
             message: '登陆失败',
-            type: 'error'
+            type: 'error',
+            duration: 2000
           })
         }
       })
