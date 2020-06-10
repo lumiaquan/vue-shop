@@ -22,7 +22,7 @@
             :collapse="isCollapse"
             :collapse-transition="false"
             router
-            default-active="/active"
+            :default-active="$route.path"
           >
             <!-- 一级菜单 -->
             <el-submenu
@@ -36,7 +36,7 @@
                 <span>{{ item.authName }}</span>
               </template>
               <el-menu-item
-                :index="subItem.path"
+                :index="'/' + subItem.path"
                 v-for="subItem in item.children"
                 :key="subItem.id"
               >
@@ -147,9 +147,6 @@ export default {
 
   .el-main {
     background-color: #eaedf1;
-    color: #333;
-    text-align: center;
-    line-height: 160px;
   }
 }
 </style>

@@ -4,8 +4,6 @@ axios.interceptors.request.use(
   config => {
     // Do something before request is sent
     let hasToken = window.sessionStorage.getItem('token')
-    console.log(hasToken)
-    console.log(config)
     if (hasToken != undefined) {
       config.headers.Authorization = hasToken
     }
